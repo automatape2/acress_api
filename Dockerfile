@@ -14,8 +14,7 @@ COPY google-chrome-stable_current_amd64.deb /code/
 RUN dpkg -i google-chrome-stable_current_amd64.deb || true
 RUN apt-get install -f -y
 
-# Install ChromeDriver 
-# https://googlechromelabs.github.io/chrome-for-testing/#stable
+# Install ChromeDriver (https://googlechromelabs.github.io/chrome-for-testing/#stable)
 # RUN wget https://storage.googleapis.com/chrome-for-testing-public/125.0.6422.78/linux64/chromedriver-linux64.zip
 COPY chromedriver-linux64.zip /code/
 RUN unzip chromedriver-linux64.zip
