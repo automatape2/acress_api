@@ -46,6 +46,6 @@ def get_pubinei_data(distrito):
     
     pubinei_from_web = get_pubinei_from_web(distrito)
        
-    publinei = insert_pubinei(pubinei_from_web)
+    pubinei = insert_pubinei(pubinei_from_web)
     
     return pubinei
