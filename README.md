@@ -9,3 +9,11 @@ git commit -m "Normalize all the line endings"
 ```
 git reset --hard HEAD
 ```
+
+# Start migrations
+```
+python manage.py makemigrations
+```
+```
+python manage.py migrate
+```
