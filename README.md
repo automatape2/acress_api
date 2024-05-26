@@ -17,3 +17,9 @@ python manage.py makemigrations
 ```
 python manage.py migrate
 ```
+
+
+# Start create superuser
+```
+python manage.py createsuperuser
+```
