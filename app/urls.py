@@ -15,8 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
+from app.pea2017.views import index, pea_upload
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('pubinei/', include('app.pubinei.urls')),
+    path('pea2017/', include('app.pea2017.urls')),
+
 ]

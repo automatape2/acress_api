@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from .services import get_pubinei_data
-import json
 
 def index(request):
     if request.method == 'GET':
