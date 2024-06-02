@@ -9,14 +9,14 @@ RUN apt-get --fix-broken install -y libnss3 libgconf-2-4 libxi6 libgdk-pixbuf2.0
 
 
 # Install Chrome (google-chrome --version)
-# RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-COPY google-chrome-stable_current_amd64.deb /code/
+RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+# COPY google-chrome-stable_current_amd64.deb /code/
 RUN dpkg -i google-chrome-stable_current_amd64.deb || true
 RUN apt-get install -f -y
 
 # Install ChromeDriver (https://googlechromelabs.github.io/chrome-for-testing/#stable)
-# RUN wget https://storage.googleapis.com/chrome-for-testing-public/125.0.6422.78/linux64/chromedriver-linux64.zip
-COPY chromedriver-linux64.zip /code/
+RUN wget https://storage.googleapis.com/chrome-for-testing-public/125.0.6422.78/linux64/chromedriver-linux64.zip
+# COPY chromedriver-linux64.zip /code/
 RUN unzip chromedriver-linux64.zip
 RUN mv ./chromedriver-linux64/chromedriver /usr/bin/chromedriver
 # RUN rm -R -f ./chromedriver-linux64
