@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'app.helpers',
     'app.pea2017',
     'app.midis',
+    'app.susalud',
 ]
 
 MIDDLEWARE = [
