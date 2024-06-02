@@ -20,5 +20,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('pubinei/', include('app.pubinei.urls')),
     path('pea2017/', include('app.pea2017.urls')),
+    path('midis/', include('app.midis.urls')),
 
 ]

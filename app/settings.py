@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'app.pubinei',
     'app.helpers',
     'app.pea2017',
+    'app.midis',
 ]
 
 MIDDLEWARE = [

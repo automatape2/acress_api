@@ -5,6 +5,7 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 import re
 import unidecode
+import easyocr
 
 class WebdriverService:
     def __init__(self, url):
@@ -32,4 +33,13 @@ def convert_to_slug(text):
         ).strip('_')
 
     return text
+
+def image_to_string_array(image_path):
+    return easyocr.Reader(['en']).readtext(image_path)
+
+
+def getElementByPath(driver, string_path):
+    return WebDriverWait(driver, 30).until(
+        EC.visibility_of_element_located((By.XPATH, f""+string_path))
+    )
  

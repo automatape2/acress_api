@@ -1,3 +1,15 @@
 from django.db import models
 
-# Create your models here.
+class CentrosPoblados(models.Model):
+    key = models.CharField(max_length=100)
+    value = models.JSONField()
+    
+    def __str__(self):
+        return self.key
+
+class Midis(models.Model):
+    key = models.CharField(max_length=100)
+    value = models.JSONField()
+    
+    def __str__(self):
+        return self.key
