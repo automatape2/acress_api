@@ -1,0 +1,36 @@
+openapi: '3.0.2'
+security: []
+info:
+  title: API Title
+  version: '1.0'
+servers:
+  - url: http://localhost:80
+    description: Local server
+paths:
+  /:
+    get:
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Not Found
+        '406':
+          description: Not Acceptable
+    put:
+      responses:
+        '404':
+          description: Not Found
+        '406':
+          description: Not Acceptable
+    head:
+      responses:
+        '404':
+          description: Not Found
+        '406':
+          description: Not Acceptable
+    delete:
+      responses:
+        '404':
+          description: Not Found
+        '406':
+          description: Not Acceptable
