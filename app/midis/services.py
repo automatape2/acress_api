@@ -1,8 +1,8 @@
-from app.helpers.services import image_to_string_array, convert_to_slug
+from app.helpers.services import convert_to_slug
 from .repositories import get_centros_poblados, insert_centros_poblados, get_midis, insert_midis
 from .models import Midis, CentrosPoblados
 
-from app.helpers.services import WebdriverService
+# from app.helpers.services import WebdriverService
  
 def get_data_midis_from_web(distrito, provincia, departamento, centropoblado):
 

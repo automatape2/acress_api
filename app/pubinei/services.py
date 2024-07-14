@@ -1,6 +1,6 @@
 from .repositories import  get_pubinei, insert_pubinei
-from app.helpers.services import WebdriverService, convert_to_slug
-from selenium.webdriver.common.by import By
+from app.helpers.services import convert_to_slug
+# from selenium.webdriver.common.by import By
 from .models import Pubinei
 
 def get_pubinei_from_web(distrito):

@@ -1,26 +1,28 @@
 services:
-  db:
-    image: postgres
-    volumes:
-      - ./data/db:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_DB=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-    ports:
-      - 5433:5432
+  # db:
+  #   image: postgres
+  #   volumes:
+  #     - ./data/db:/var/lib/postgresql/data
+  #   environment:
+  #     - POSTGRES_DB=postgres
+  #     - POSTGRES_USER=postgres
+  #     - POSTGRES_PASSWORD=postgres
+  #   ports:
+  #     - 5433:5432
+    
   app:
     build: .
-    command: gunicorn --bind 0.0.0.0:8000 app.wsgi:application
+    command: gunicorn --bind 0.0.0.0:1000 app.wsgi:application
     # command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/code
     ports:
-      - 8000:8000
+      - 1000:1000
     environment:
       POSTGRES_NAME: postgres
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_HOST: db
-    depends_on:
-      - db
+    # depends_on:
+    #   - db
+    network_mode: "host"

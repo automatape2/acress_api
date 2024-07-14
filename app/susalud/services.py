@@ -2,8 +2,8 @@ import requests
 import json
 from .models import SuSalud, IPress
 from .repositories import get_susalud, insert_susalud, get_ipress, insert_ipress
-from app.helpers.services import WebdriverService, convert_to_slug
-from selenium.webdriver.common.by import By
+from app.helpers.services import convert_to_slug
+# from selenium.webdriver.common.by import By
 
 def get_establishment_from_web(distrito, provincia, departamento):
     url = 'http://app20.susalud.gob.pe:8080/registro-renipress-webapp/listadoEstablecimientosRegistrados.htm?action=cargarEstablecimientos&txt_filtrar=&cmb_estado=1&cmb_departamento='+departamento+'&cmb_provincia='+provincia+'&cmb_distrito='+distrito+'&cmb_institucion=0&cmb_tipo_establecimiento=0&cmb_clasificacion=0&cmb_categoria=0&cmb_unidadEjecutora=0&cmb_servicio=0&cmb_autoridadSanitaria=0&cmb_red=0&cmb_microRed=0&cmb_clas=0&cmb_colegio=0&cmb_especialidad=0&cmb_quintil=0&cmb_telesalud=0&dat_fd_quintil=&ra_reg=on&dat_fd_desde=&dat_fd_hasta='
