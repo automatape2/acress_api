@@ -1,7 +1,12 @@
 from app.midis.models import CentrosPoblados, Midis
  
 def get_centros_poblados(distrito, provincia, departamento, centros_poblados) -> CentrosPoblados:
-    centros_poblados = CentrosPoblados.objects.filter(key=distrito + provincia + departamento + centros_poblados).first()
+    centros_poblados = CentrosPoblados.objects.filter(
+        departamento=departamento,
+        provincia=provincia,
+        distrito=distrito,
+        centros_poblados=centros_poblados,
+        ).all()
     return centros_poblados
 
 def insert_centros_poblados(centro_poblados : CentrosPoblados) -> CentrosPoblados:
@@ -9,9 +14,15 @@ def insert_centros_poblados(centro_poblados : CentrosPoblados) -> CentrosPoblado
     return centro_poblados
 
 def get_midis(distrito, provincia, departamento, centropoblado) -> Midis:
-    midis = Midis.objects.filter(key=distrito + provincia + departamento + centropoblado).first()
+    midis = Midis.objects.filter(
+        departamento=departamento,
+        provincia=provincia,
+        distrito=distrito,
+        centro_poblado=centropoblado,
+        ).all()
     return midis
 
-def insert_midis(midis : Midis) -> Midis:
-    midis.save()
+def insert_midis(midis):
+    for midi in midis:
+        midi.save()
     return midis

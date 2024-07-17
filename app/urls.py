@@ -22,4 +22,7 @@ urlpatterns = [
     path('pea2017/', include('app.pea2017.urls')),
     path('midis/', include('app.midis.urls')),
     path('susalud/', include('app.susalud.urls')),
+    path('nbi/', include('app.NBI.urls')),
+    path('minedu/', include('app.minedu.urls')),
+    path('idh/', include('app.IDH.urls')),
 ]

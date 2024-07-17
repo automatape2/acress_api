@@ -43,6 +43,9 @@ INSTALLED_APPS = [
     'app.pea2017',
     'app.midis',
     'app.susalud',
+    'app.NBI',
+    'app.minedu',
+    'app.IDH',
 ]
 
 MIDDLEWARE = [
@@ -82,10 +85,11 @@ WSGI_APPLICATION = 'app.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('POSTGRES_NAME'),
-        'USER': os.environ.get('POSTGRES_USER'),
-        'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
-        'HOST': os.environ.get('POSTGRES_HOST'),
+        # 'NAME': os.environ.get('POSTGRES_NAME'),
+        'NAME': "accress",
+        'USER': "postgres",
+        'PASSWORD': "123",
+        'HOST': "localhost",
         'PORT': 5432,
     }
 }

@@ -1,9 +1,15 @@
 from .models import Pubinei
 
-def get_pubinei(distrito):
-    pubinei = Pubinei.objects.filter(key=distrito).first()
-    return pubinei
+def get_pubinei(departamento, provincia, distrito):
+    pubineis = Pubinei.objects.filter(
+        departamento=departamento,
+        provincia=provincia,
+        distrito=distrito
+    ).all()
+    return pubineis
 
-def insert_pubinei(pubinei):
-    pubinei.save()
-    return pubinei
+def insert_pubineis(pubineis):
+    for pubinei in pubineis:
+        pubinei.save()
+    
+    return pubineis

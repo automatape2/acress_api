@@ -8,7 +8,10 @@ class SuSalud(models.Model):
         return self.key
 
 class IPress(models.Model):
-    key = models.CharField(max_length=900)
+    departamento = models.CharField(max_length=900, null=False, blank=True, default=None)
+    provincia = models.CharField(max_length=900, null=False, blank=True, default=None)
+    distrito = models.CharField(max_length=900, null=False, blank=True, default=None)
+    key = models.CharField(max_length=900, null=False, blank=True, default=None)
     value = models.JSONField()
     
     def __str__(self):
