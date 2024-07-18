@@ -10,7 +10,8 @@ class Command(BaseCommand):
     provincias = []
     distritos = []
     
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
         self.departamentos = descargar_ubigeo_departamento()
         self.provincias = descargar_ubigeo_provincia()
         self.distritos = descargar_ubigeo_distrito()

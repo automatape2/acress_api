@@ -86,10 +86,11 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         # 'NAME': os.environ.get('POSTGRES_NAME'),
-        'NAME': "accress",
-        'USER': "postgres",
-        'PASSWORD': "123",
-        'HOST': "localhost",
+        'HOST': os.environ.get('HOSTNAME'), # dpg-cqc6cf56l47c73cumtbg-a
+        'NAME': os.environ.get('DATABASE'), #accress_m1nt
+        'USER': os.environ.get('USER'), # accress
+        'PASSWORD': os.environ.get('PASSWORD'), # UMb217poi81OSH7Q5lHfWDFZojvjKN7v
+        
         'PORT': 5432,
     }
 }
