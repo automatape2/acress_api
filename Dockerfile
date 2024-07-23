@@ -27,5 +27,5 @@ COPY requirements.txt /code/
 # RUN pip3.12 install --disable-pip-version-check --target . --upgrade -r requirements.txt
 RUN pip install -r requirements.txt
 COPY . /code/
-
-CMD ["gunicorn", "--bind", "localhost:8080", "app.wsgi:application"]
+EXPOSE 8000
+CMD ["gunicorn", "--bind", "localhost:8000", "app.wsgi:application"]

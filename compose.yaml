@@ -12,17 +12,17 @@ services:
     
   app:
     build: .
-    command: gunicorn --bind 0.0.0.0:1000 app.wsgi:application
+    command: gunicorn --bind 0.0.0.0:8000 app.wsgi:application
     # command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/code
     ports:
-      - 1000:1000
+      - "8000:8000"
     environment:
-      POSTGRES_NAME: postgres
+      POSTGRES_NAME: accress
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_HOST: db
+      POSTGRES_PASSWORD: 123
+      HOSTNAME: localhost
     # depends_on:
     #   - db
     network_mode: "host"

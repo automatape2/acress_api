@@ -5,7 +5,7 @@ def get_minedu(departamento, provincia, distrito):
         departamento=departamento,
         provincia=provincia,
         distrito=distrito
-        ).all()
+    ).all()
     return minedus
 
 def insert_minedu(minedus):

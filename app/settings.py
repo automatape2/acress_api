@@ -25,8 +25,9 @@ SECRET_KEY = 'django-insecure-43xzho6gu4=j%9j$kd3712mu3-3-dph0zg*brmklc&4@ey=_x3
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+CORS_ORIGIN_ALLOW_ALL = DEBUG
 
-ALLOWED_HOSTS = ['localhost','accress-app.onrender.com']
+ALLOWED_HOSTS = ['localhost','accress-app.onrender.com','*']
 
 
 # Application definition
@@ -46,6 +47,7 @@ INSTALLED_APPS = [
     'app.NBI',
     'app.minedu',
     'app.IDH',
+    "corsheaders"
 ]
 
 MIDDLEWARE = [
@@ -86,10 +88,15 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         # 'NAME': os.environ.get('POSTGRES_NAME'),
-        'HOST': os.environ.get('HOSTNAME'), # dpg-cqc6cf56l47c73cumtbg-a
-        'NAME': os.environ.get('DATABASE'), #accress_m1nt
-        'USER': os.environ.get('USER'), # accress
-        'PASSWORD': os.environ.get('PASSWORD'), # UMb217poi81OSH7Q5lHfWDFZojvjKN7v
+        # 'HOST': os.environ.get('HOSTNAME'), # dpg-cqc6cf56l47c73cumtbg-a
+        # 'NAME': os.environ.get('POSTGRES_NAME'), #accress_m1nt
+        # 'USER': os.environ.get('POSTGRES_USER'), # accress
+        # 'PASSWORD': os.environ.get('POSTGRES_PASSWORD'), # UMb217poi81OSH7Q5lHfWDFZojvjKN7v
+        
+        'NAME': "accress",
+        'USER': "postgres",
+        'PASSWORD': "123",
+        'HOST': "localhost",
         
         'PORT': 5432,
     }

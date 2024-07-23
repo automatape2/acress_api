@@ -3,8 +3,8 @@ from .models import Pea2017
 # import pandas as pd
 # from pandas.core.frame import DataFrame
 
-def get_pea2017_data(region: str,province: str,district: str):
-    pea2017 = get_pea2017(region,province, district)
+def get_pea2017_data(departamento: str, provincia: str, distrito: str):
+    pea2017 = get_pea2017(departamento, provincia, distrito)
     return pea2017
 
 # def upload_pea(filepath: str):

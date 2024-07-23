@@ -22,9 +22,13 @@ def peaCP(request):
     
 def index(request):
     if request.method == "GET":
+        return JsonResponse({
+            "message": "Not implemented"
+        }, safe=False)
         departamento = request.GET.get('departamento', default="Lima")
         provincia = request.GET.get('provincia', default="Lima")
         distrito = request.GET.get('distrito', default="Lima")
+    
         
         
         

@@ -18,6 +18,7 @@ def get_data_minedu_from_web(distrito, provincia, departamento):
     distrito_ubigeo = from_distrito_to_ubigeo(provincia_ubigeo, distrito)
 
     url = 'https://escale.minedu.gob.pe/padron/rest/instituciones?estados=1&ubigeo='+str(distrito_ubigeo)
+    print(url)
     headers = {
         'Accept': 'application/json'
     }
@@ -32,32 +33,48 @@ def get_data_minedu_from_web(distrito, provincia, departamento):
         items_grouped2 = groupby(items_sorted, key=itemgetter('codinst'))
         
          
+        
+            
         total = 0
         for key, group2 in items_grouped2:
             for item2 in group2:
-                total += int(item2["estadistica"]["talumno"])
+                try:
+                    total += int(item2["estadistica"]["talumno"])
+                except KeyError:
+                    pass
                 
         minedus = []
-        for key, group in items_grouped:
-          
-            minedu  = Minedu()
-            minedu.departamento = departamento
-            minedu.provincia = provincia
-            minedu.distrito = distrito
+        if total is not 0:
+            for key, group in items_grouped:
             
-            niveles = []
-            for item in group:
-                nombre = item["cenEdu"]
-                niveles.append({
-                        "nivel": item["estadistica"]["nivelModalidad"]["valor"],
-                        "estudiantes": int(item["estadistica"]["talumno"]),
-                        "porcentaje": round( float(item["estadistica"]["talumno"]) / total * 100, 2 )
-                    })
+                minedu  = Minedu()
+                minedu.departamento = departamento
+                minedu.provincia = provincia
+                minedu.distrito = distrito
+                
+                niveles = []
+                for item in group:
+                    nombre = item["cenEdu"]
                     
-            minedu.nombre = nombre
-            minedu.niveles = niveles
-            
-            minedus.append(minedu)
+                    try:
+                        nivel = item["estadistica"]["nivelModalidad"]["valor"]
+                        estudiantes = int(item["estadistica"]["talumno"])
+                        porcentaje = round( float(item["estadistica"]["talumno"]) / total * 100, 2 )
+                    except:
+                        nivel = ""
+                        estudiantes = 0
+                        porcentaje = 0
+                        
+                    niveles.append({
+                            "nivel": nivel,
+                            "estudiantes": estudiantes,
+                            "porcentaje": porcentaje
+                        })
+                        
+                minedu.nombre = nombre
+                minedu.niveles = niveles
+                
+                minedus.append(minedu)
          
         return minedus
     

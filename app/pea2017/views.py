@@ -9,8 +9,8 @@ from django.core import serializers
 def index(request):
     if request.method == 'GET':
         departamento = request.GET.get('departamento', default="DEPARTAMENTO TACNA")
-        provincia = request.GET.get('departamento', default="PROVINCIA TACNA")
-        distrito = request.GET.get('departamento', default="DISTRITO TACNA")
+        provincia = request.GET.get('provincia', default="PROVINCIA TACNA")
+        distrito = request.GET.get('distrito', default="DISTRITO TACNA")
     
         peas2017 = get_pea2017_data(departamento,provincia,distrito)
         
