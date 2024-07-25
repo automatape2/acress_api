@@ -23,3 +23,8 @@ python manage.py migrate
 ```
 python manage.py createsuperuser
 ```
+
+# Databse UMb217poi81OSH7Q5lHfWDFZojvjKN7v
+```
+psql -h dpg-cqc6cf56l47c73cumtbg-a.frankfurt-postgres.render.com  -U accress -d accress_m1nt -f backup_postgres/accress.sql
+```     

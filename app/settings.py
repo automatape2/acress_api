@@ -87,16 +87,16 @@ WSGI_APPLICATION = 'app.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        # 'NAME': os.environ.get('POSTGRES_NAME'),
-        # 'HOST': os.environ.get('HOSTNAME'), # dpg-cqc6cf56l47c73cumtbg-a
-        # 'NAME': os.environ.get('POSTGRES_NAME'), #accress_m1nt
-        # 'USER': os.environ.get('POSTGRES_USER'), # accress
-        # 'PASSWORD': os.environ.get('POSTGRES_PASSWORD'), # UMb217poi81OSH7Q5lHfWDFZojvjKN7v
         
-        'NAME': "accress",
-        'USER': "postgres",
-        'PASSWORD': "123",
-        'HOST': "localhost",
+        'HOST': os.environ.get('HOSTNAME'), # dpg-cqc6cf56l47c73cumtbg-a
+        'NAME': os.environ.get('POSTGRES_NAME'), #accress_m1nt
+        'USER': os.environ.get('POSTGRES_USER'), # accress
+        'PASSWORD': os.environ.get('POSTGRES_PASSWORD'), # UMb217poi81OSH7Q5lHfWDFZojvjKN7v
+        
+        # 'NAME': "accress",
+        # 'USER': "postgres",
+        # 'PASSWORD': "123",
+        # 'HOST': "localhost",
         
         'PORT': 5432,
     }

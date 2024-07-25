@@ -21,6 +21,9 @@ def peaCP(request):
         return JsonResponse(response,safe=False)
     
 def index(request):
+    return JsonResponse({
+            "message": "Not implemented"
+        }, safe=False)
     if request.method == "GET":
         return JsonResponse({
             "message": "Not implemented"
