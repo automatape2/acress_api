@@ -17,7 +17,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         
-        archivo_excel = './excels/CCPP Consolidado Indicadores_2017 v1.xlsx'
+        archivo_excel = './excels/pubinei/12. Huancayo.xlsx'
         
         df = pd.read_excel(archivo_excel, skiprows=2)
         column_names = df.columns
