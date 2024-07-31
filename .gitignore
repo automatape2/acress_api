@@ -6,3 +6,9 @@ google-chrome-stable_current_amd64.deb
 venv
 excels
 backup_postgres
+chromedriver-linux64
+.vscode
+.42c    
+./*.sql
+./*.docx
+./*.html
