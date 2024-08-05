@@ -1,4 +1,4 @@
-from .repositories import  get_pubinei, insert_pubineis
+from .repositories import  get_pubinei, insert_pubineis, get_poblacion
 from app.helpers.services import convert_to_slug
 from selenium.webdriver.common.by import By
 from .models import Pubinei
@@ -80,3 +80,7 @@ def get_pubinei_data(departamento, provincia, distrito):
     
     
     return pubinei
+
+
+def get_poblacion_data(departamento, provincia, distrito, idccpp):
+    return get_poblacion(departamento, provincia, distrito, idccpp)
