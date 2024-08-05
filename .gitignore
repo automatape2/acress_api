@@ -8,7 +8,13 @@ excels
 backup_postgres
 chromedriver-linux64
 .vscode
+.venv
 .42c    
 ./*.sql
 ./*.docx
 ./*.html
+__pycache__/
+*.py[cod]
+*.pyc
+*.pyo
+ 

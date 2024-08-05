@@ -23,8 +23,9 @@ class Poblacion(models.Model):
     departamento = models.CharField(max_length=100, null=False, default="-")
     provincia = models.CharField(max_length=100, null=False, default="-")
     distrito = models.CharField(max_length=100, null=False, default="-")
+    idccpp = models.CharField(max_length=100, null=False, default="-")
     key = models.CharField(max_length=100, null=False, default="-")
-    value = models.IntegerField(null=False, default=0)
+    value = models.CharField(max_length=100, null=False, default="-")
     
     
      
