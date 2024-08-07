@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'app.NBI',
     'app.minedu',
     'app.IDH',
+    'app.geoperu',
     "corsheaders"
 ]
 

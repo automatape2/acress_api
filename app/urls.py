@@ -26,4 +26,5 @@ urlpatterns = [
     path('minedu/', include('app.minedu.urls')),
     path('idh/', include('app.IDH.urls')),
     path('converter/', include('app.converter.urls')),
+    path('geoperu/', include('app.geoperu.urls')),
 ]
