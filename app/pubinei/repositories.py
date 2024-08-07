@@ -22,4 +22,4 @@ def get_poblacion(departamento, provincia, distrito, idccpp):
         idccpp=idccpp
     ).all()
 
-    return poblacion
+    return list(poblacion)

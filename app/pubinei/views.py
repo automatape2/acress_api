@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from .services import get_pubinei_data, get_poblacion_data
+from django.db.models import Q
 
 def peaCP(request):
     if request.method == 'GET':
@@ -27,11 +28,15 @@ def index(request):
         distrito = request.GET.get('distrito', default="Lima")
         idccpp = request.GET.get('idccpp', default="101010002")
 
-        poblaciones = get_poblacion_data(departamento, provincia, distrito, idccpp)
-        print(poblaciones.count())
+        poblaciones = list(get_poblacion_data(departamento, provincia, distrito, idccpp))
+        print(len(poblaciones))
+        # return JsonResponse(
+        #     [], 
+        #     safe=False
+        # )
         response = {
             "poblacion": {
-                title: round(float(poblaciones.filter(key__icontains='poblacion.'+title).first().value),2)
+                title: round(float(next((p.value for p in poblaciones if 'poblacion.' + title in p.key), 0)), 2)
                 for title in [
                     "cantidadVarones",
                     "cantidadMujeres",
@@ -83,15 +88,11 @@ def index(request):
                             
                             {   
                                 "tipo": item.key.replace('vivienda.material.'+word_key+".", '').replace('(%)', ''),
-                                "casos": item.value,
-                                "porcentaje": round(float(poblaciones.filter(key=item.key+" (%)").first().value),2)
+                                "casos": next((p.value for p in poblaciones if item.key.replace('(%)', '').strip() in p.key), 0),
+                                "porcentaje": round(float(item.value),2)
                             }
-                            for item in poblaciones.filter(
-                                key__icontains='vivienda.material.'+word_key,
-                                key__contains="(%)"
-                            ).all()
-
-                            if poblaciones.filter(key=item.key+" (%)").first() != None
+                            for item in poblaciones
+                            if 'vivienda.material.'+word_key in item.key and '(%)' in item.key
                         ]
                     }
                     for word_key, category in {
@@ -113,13 +114,11 @@ def index(request):
                             
                     {   
                         "tipo": item.key.replace('salud.', '').replace('(%)', ''),
-                        "poblacion": item.value,
-                        "porcentaje": round(float(poblaciones.filter(key=item.key).first().value),2)
+                        "poblacion": next((p.value for p in poblaciones if item.key.replace('(%)', '').strip() in p.key), 0),
+                        "porcentaje": round(float(item.value),2)
                     }
-                    for item in poblaciones.filter(
-                        key__icontains='salud.',
-                        key__contains="(%)"
-                    ).all()
+                    for item in poblaciones
+                    if 'salud.' in item.key and '(%)' in item.key
  
                 ]
             },
@@ -135,13 +134,11 @@ def index(request):
                           
                     {   
                         "total": item.key.replace('salud.nivel.', '').replace('(%)', ''),
-                        "casos": item.value,
-                        "porcentaje": round(float(poblaciones.filter(key=item.key).first().value),2)
+                        "casos": next((p.value for p in poblaciones if item.key.replace('(%)', '').strip() in p.key), 0),
+                        "porcentaje": round(float(item.value),2)
                     }
-                    for item in poblaciones.filter(
-                        key__icontains='salud.nivel.',
-                        key__contains="(%)"
-                    ).all()         
+                    for item in poblaciones
+                    if 'educacion.nivel.' in item.key and '(%)' in item.key
                 ],
                 "analfabetismo": [
                     # {
@@ -150,15 +147,12 @@ def index(request):
                     #     "porcentaje": 87.10
                     # },
                     {   
-                        "total": item.key.replace('educacion.analfabetismo.', ''),
-                        "casos": item.value,
-                        # "porcentaje": round(float(poblaciones.filter(key=item.key+"  (%)").first().value),2)
+                        "total": item.key.replace('educacion.analfabetismo.', '').replace('(%)', ''),
+                        "casos": next((p.value for p in poblaciones if item.key.replace('(%)', '').strip() in p.key), 0),
+                        "porcentaje": round(float(item.value),2)
                     }
-                    for item in poblaciones.filter(
-                        key__icontains='educacion.analfabetismo.'
-                    ).exclude(
-                        key__contains="(%)"
-                    ).all()  
+                    for item in poblaciones
+                    if 'educacion.analfabetismo.' in item.key and '(%)' in item.key
                 ]
             },
             "necesidades_basicas": {
@@ -171,13 +165,11 @@ def index(request):
                     # },
                     {
                         "categoria": item.key.replace('necesidades_basicas.', '').replace('(%)', ''),
-                        "casos": item.value,
-                        "porcentaje": round(float(poblaciones.filter(key=item.key).first().value),2)
+                        "casos": next((p.value for p in poblaciones if item.key.replace('(%)', '').strip() in p.key), 0),
+                        "porcentaje": round(float(item.value),2)
                     }
-                    for item in poblaciones.filter(
-                        key__icontains='necesidades_basicas.',
-                        key__contains="(%)"
-                    ).all()  
+                    for item in poblaciones
+                    if 'necesidades_basicas.' in item.key and '(%)' in item.key
                 ]
             }
         }
