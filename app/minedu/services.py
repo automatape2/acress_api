@@ -44,7 +44,7 @@ def get_data_minedu_from_web(distrito, provincia, departamento):
                     pass
                 
         minedus = []
-        if total is not 0:
+        if total != 0:
             for key, group in items_grouped:
             
                 minedu  = Minedu()

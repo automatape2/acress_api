@@ -13,3 +13,4 @@ tqdm
 html2docx==1.6.0
 django-cors-headers==4.4.0
 python-bidi==0.4.2
+load_dotenv
