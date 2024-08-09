@@ -19,7 +19,7 @@ class Command(BaseCommand):
                 
                 script = GeoPeru.objects.filter(idccpp=codigo_centro_poblado)
                 if script.exists():
-                    if script.count() >= 24:
+                    if script.count() >= 23:
                         break
                     
                 geoperus = get_pubinei_from_web(codigo_centro_poblado)
