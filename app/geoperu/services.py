@@ -1,4 +1,4 @@
-from .repositories import get_geoperu
+from .repositories import get_geoperus
 from .models import GeoPeru
 from app.helpers.services import WebdriverService
 from selenium.webdriver.common.by import By
@@ -13,9 +13,9 @@ DEPLEGABLE_DATOSDEPOBLACION_XPATH = '/html/body/table[3]/tbody/tr/td/table[1]/tb
 TABLA_DATOSDEPOBLACION_XPATH = '/html/body/table[3]/tbody/tr/td/table[1]/tbody/tr/td/table[3]/tbody/tr/td/div/div/table/tbody'
  
   
-def get_pubinei_from_web(idccpp):
+def get_pubinei_from_web(idccpp) -> list[GeoPeru]:
     url = 'https://visor.geoperu.gob.pe/reportes/consulta_ccpp.phtml?olayer=peru_ccpp_mayor&ocampo=cod_ccpp&ovalor='+str(idccpp)
-    print(url)
+    # print(url)
     web = WebdriverService(url)
 
     web.getElementByPath(DEPLEGABLE_UBICACIONGEOGRAFICA_XPATH).click()
@@ -27,6 +27,7 @@ def get_pubinei_from_web(idccpp):
     web.getElementByPath(DEPLEGABLE_DATOSDEPOBLACION_XPATH).click()
     datos_poblacion_filas = web.getElementByPath(TABLA_DATOSDEPOBLACION_XPATH).find_elements(By.TAG_NAME, "tr") #Indicadores, Población, Porcentaje (%)
 
+    geoperus = list()
     for fila in datos_poblacion_filas:
         celdas = fila.find_elements(By.TAG_NAME, "td")
 
@@ -42,13 +43,15 @@ def get_pubinei_from_web(idccpp):
             if index == 2:
                 porcentaje = celda.text
 
-        return GeoPeru(
+        geoperus.append(GeoPeru(
             idccpp=idccpp,
             indicador=indicador,
             poblacion=poblacion,
             porcentaje=porcentaje
-        )
+        ))
+
+    return geoperus
 
      
-def get_geoperu_data(idccpp):
-    return get_pubinei_from_web(idccpp=idccpp)
+def get_geoperu_data(idccpp) -> list[GeoPeru]:
+    return get_geoperus(idccpp)
