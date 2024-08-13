@@ -23,12 +23,9 @@ def peaCP(request):
     
 def index(request):
     if request.method == "GET":
-        departamento = request.GET.get('departamento', default="Lima")
-        provincia = request.GET.get('provincia', default="Lima")
-        distrito = request.GET.get('distrito', default="Lima")
-        idccpp = request.GET.get('idccpp', default="101010002")
+        idccpp = request.GET.get('idccpp', default="101010001,101010002")
 
-        poblaciones = list(get_poblacion_data(departamento, provincia, distrito, idccpp))
+        poblaciones = list(get_poblacion_data(idccpp))
         print(len(poblaciones))
         # return JsonResponse(
         #     [], 

@@ -14,12 +14,9 @@ def insert_pubineis(pubineis):
     
     return pubineis
 
-def get_poblacion(departamento, provincia, distrito, idccpp):
+def get_poblacion(idccpp: str):
     poblacion = Poblacion.objects.filter(
-        departamento=departamento,
-        provincia=provincia,
-        distrito=distrito,
-        idccpp=idccpp
+        idccpp__in=idccpp.split(",")
     ).all()
 
     return list(poblacion)
