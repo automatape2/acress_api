@@ -4,24 +4,25 @@ from .models import Midis, CentrosPoblados
 
 from app.helpers.services import WebdriverService
  
-def get_data_midis_from_web(distrito, provincia, departamento, centropoblado):
+def get_data_midis_from_web(distrito, provincia, departamento, centropoblado) -> list[Midis] :
 
     web = WebdriverService('https://public.tableau.com/views/ReporteCCPPBC/ReporteCCPP?:showVizHome=n')
 
     # Open district select (Click)
     web.getElementByPath('/html/body/div[2]/div[3]/div[1]/div[1]/div/div[2]/div[22]/div/div/div/div/div/div/div[3]/span').click()
-    web.getElementByPath(f"//*[@title='{departamento}']").click()
+    web.getElementByPath(f"//*[@title='{str(departamento).upper()}']").click()
 
     web.driver.execute_script(f"document.getElementById('loadingGlassPane').remove();")
 
     web.getElementByPath('/html/body/div[2]/div[3]/div[1]/div[1]/div/div[2]/div[23]/div/div/div/div/div/div/div[3]/span').click()
-    web.getElementByPath(f"//*[@title='{provincia}']").click()
+    web.getElementByPath(f"//*[@title='{str(provincia).upper()}']").click()
 
     web.getElementByPath('/html/body/div[2]/div[3]/div[1]/div[1]/div/div[2]/div[24]/div/div/div/div/div/div/div[3]/span').click()
-    web.getElementByPath(f"//*[@title='{distrito}']").click()
+    web.getElementByPath(f"//*[@title='{str(distrito).upper()}']").click()
 
     web.getElementByPath('/html/body/div[2]/div[3]/div[1]/div[1]/div/div[2]/div[25]/div/div/div/div/div/div/div[3]/span').click()
-    web.getElementByPath(f"//*[@title='{centropoblado}']").click()
+    
+    web.getElementByPath(f"//*[starts-with(@title, '{str(centropoblado).upper()}')]").click()
  
     # Find text in div (container)
     container_elements = web.getElementByPath(f"/html/body/div[2]/div[3]/div[1]/div[1]/div/div[2]/div[33]/div/div/div/div[1]/div[5]").text.splitlines()
@@ -38,7 +39,7 @@ def get_data_midis_from_web(distrito, provincia, departamento, centropoblado):
         midis.departamento = departamento
         midis.provincia = provincia
         midis.distrito = distrito
-        midis.centro_poblado = centropoblado
+        midis.centro_poblado = str(centropoblado).split("-")[0]
         
         midis.key = element
         midis.value = lines[index][1]  if 0 <= index < len(lines) else ""
