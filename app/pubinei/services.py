@@ -82,5 +82,5 @@ def get_pubinei_data(departamento, provincia, distrito):
     return pubinei
 
 
-def get_poblacion_data(departamento, provincia, distrito, idccpp):
-    return get_poblacion(departamento, provincia, distrito, idccpp)
+def get_poblacion_data(idccpp):
+    return get_poblacion(idccpp)
