@@ -28,8 +28,8 @@ class Command(BaseCommand):
 
                 for distrito in distritos_ubigeo:
 
-                    if not Midis.objects.filter(
-                        distrito=midis.distrito
+                    if Midis.objects.filter(
+                        distrito=distrito['name']
                     ).exists():
                         continue
                     if distrito['province_id'] != provincia['id']:
