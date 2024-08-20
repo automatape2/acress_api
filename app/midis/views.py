@@ -5,8 +5,8 @@ def index(request):
     departamento = request.GET.get('departamento', default="Lima").upper()
     provincia = request.GET.get('provincia', default="Lima").upper()
     distrito = request.GET.get('distrito', default="Lima").upper()
-    centropoblado = request.GET.get('centropoblado', default="1501010001-LIMA").upper()
-
+    centropoblado = request.GET.get('centropoblado', default="1501010001").upper()
+    
     midis = get_data_midis(distrito, provincia, departamento, centropoblado)
     total_midis = sum(float(midi.value.replace(",", "")) for midi in midis)
     

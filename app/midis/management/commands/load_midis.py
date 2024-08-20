@@ -15,6 +15,8 @@ class Command(BaseCommand):
             total=len(distritos_ubigeo),
         )
 
+        
+
         for departamento in departamentos_ubigeo:
 
             barra_progreso.set_description(f"Departamento: {departamento['name']}")
@@ -26,6 +28,10 @@ class Command(BaseCommand):
 
                 for distrito in distritos_ubigeo:
 
+                    if not Midis.objects.filter(
+                        distrito=midis.distrito
+                    ).exists():
+                        continue
                     if distrito['province_id'] != provincia['id']:
                         continue
                  
@@ -39,11 +45,7 @@ class Command(BaseCommand):
                             )
 
                             for midis in midises:
-                                if not Midis.objects.filter(
-                                    centro_poblado=midis.centro_poblado,
-                                    key=midis.key,
-                                ).exists():
-                                    midis.save()
+                                midis.save()
                         except Exception as e:
                             print(e)
                             break
